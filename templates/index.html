@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="static/w16z.jpg">
+    <title>$whale16z - Wisdom of the Waters</title>
+    <style>
+        @font-face {
+            font-family: 'Whale';
+            src: url('static/whale.otf') format('opentype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #87CEEB 0%, #4A90E2 30%, #2C5F8D 60%, #1a3a52 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Sky section with links */
+        .sky {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        .sky a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .sky a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Ticker */
+        .ticker {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 36px;
+            font-weight: bold;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+            z-index: 100;
+        }
+
+        /* Whale image */
+        .whale-container {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .whale-container img {
+            width: 300px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Main content */
+        .content {
+            position: relative;
+            margin-top: 500px;
+            text-align: center;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .input-section {
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 3px solid #FFD700;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus {
+            background: white;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Wisdom output */
+        .wisdom-output {
+            max-width: 700px;
+            margin: 0 auto;
+            min-height: 100px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            font-family: 'Whale', Georgia, serif;
+            font-size: 20px;
+            line-height: 1.6;
+            color: #1a3a52;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .wisdom-output.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading {
+            color: #667eea;
+            font-style: italic;
+        }
+
+        /* Bubbles decoration */
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: rise 10s infinite ease-in;
+        }
+
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 100%;
+                opacity: 0;
+            }
+        }
+
+        .bubble:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-delay: 0s; }
+        .bubble:nth-child(2) { left: 30%; width: 60px; height: 60px; animation-delay: 2s; }
+        .bubble:nth-child(3) { left: 50%; width: 30px; height: 30px; animation-delay: 4s; }
+        .bubble:nth-child(4) { left: 70%; width: 50px; height: 50px; animation-delay: 1s; }
+        .bubble:nth-child(5) { left: 85%; width: 45px; height: 45px; animation-delay: 3s; }
+    </style>
+</head>
+<body>
+    <!-- Sky links -->
+    <div class="sky">
+        <a href="https://x.com" target="_blank">𝕏</a>
+        <a href="#" target="_blank">DEX</a>
+    </div>
+
+    <!-- Ticker -->
+    <div class="ticker">$whale16z</div>
+
+    <!-- Whale -->
+    <div class="whale-container">
+        <img src="static/w16z.jpg" alt="Whale">
+    </div>
+
+    <!-- Bubbles -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="input-section">
+            <input type="text" id="userInput" placeholder="Seek the wisdom of the ancient whale...">
+            <button onclick="askWhale()">Ask the whale for wisdom of the waters</button>
+        </div>
+
+        <div class="wisdom-output" id="wisdomOutput"></div>
+    </div>
+
+    <script>
+        async function askWhale() {
+            const input = document.getElementById('userInput').value;
+            const output = document.getElementById('wisdomOutput');
+            
+            if (!input.trim()) {
+                alert('Please enter a question for the whale!');
+                return;
+            }
+
+            output.classList.add('active');
+            output.innerHTML = '<span class="loading">The whale is contemplating the depths...</span>';
+
+            try {
+                const response = await fetch(`/random_joke?input=${encodeURIComponent(input)}`);
+                const data = await response.json();
+                
+                if (data.error) {
+                    output.innerHTML = 'The whale could not surface with wisdom at this time...';
+                } else {
+                    output.innerHTML = data.joke;
+                }
+            } catch (error) {
+                output.innerHTML = 'The waters are too turbulent. Please try again...';
+                console.error('Error:', error);
+            }
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                askWhale();
+            }
+        });
+    </script>
+</body>
+</html>
