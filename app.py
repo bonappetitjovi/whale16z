@@ -15,10 +15,10 @@ def home():
 def random_joke():
     try:
         user_input = request.args.get('input', '')  # Get the input from the frontend
-        prompt = f"Answer like a cool wise old whale : \"{user_input}\""
+        prompt = f"Answer like a cool wise old whale in 2 lines : \"{user_input}\""
 
         completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             messages=[{"role": "user", "content": prompt}],
             temperature=2,
             max_tokens=300,
@@ -34,5 +34,4 @@ def random_joke():
         return jsonify({"error": "An unexpected error occurred"}), 500
 
 if __name__ == '__main__':
-
     app.run(debug=True)
