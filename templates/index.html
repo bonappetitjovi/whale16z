@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpg" href="static/w16z.jpg">
     <title>$whale16z - Wisdom of the Waters</title>
     <style>
         @font-face {
@@ -23,11 +22,12 @@
             background: linear-gradient(to bottom, #87CEEB 0%, #4A90E2 30%, #2C5F8D 60%, #1a3a52 100%);
             min-height: 100vh;
             position: relative;
+            padding-bottom: 100px;
         }
 
         /* Sky section with links */
         .sky {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 30px;
             display: flex;
@@ -54,7 +54,7 @@
 
         /* Ticker */
         .ticker {
-            position: absolute;
+            position: fixed;
             top: 30px;
             left: 30px;
             font-size: 36px;
@@ -65,17 +65,18 @@
             z-index: 100;
         }
 
-        /* Whale image */
+        /* Whale image - moved higher */
         .whale-container {
-            position: absolute;
-            top: 150px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: relative;
+            margin: 100px auto 30px;
+            text-align: center;
             animation: float 4s ease-in-out infinite;
+            max-width: 400px;
         }
 
         .whale-container img {
-            width: 300px;
+            width: 100%;
+            max-width: 350px;
             height: auto;
             filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
         }
@@ -92,15 +93,16 @@
         /* Main content */
         .content {
             position: relative;
-            margin-top: 500px;
             text-align: center;
             padding: 0 20px;
             z-index: 10;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .input-section {
             max-width: 600px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
         }
 
         input[type="text"] {
@@ -146,16 +148,17 @@
         .wisdom-output {
             max-width: 700px;
             margin: 0 auto;
-            min-height: 100px;
+            min-height: 80px;
             padding: 30px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             font-family: 'Whale', Georgia, serif;
-            font-size: 20px;
-            line-height: 1.6;
+            font-size: 22px;
+            line-height: 1.8;
             color: #1a3a52;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             display: none;
+            word-wrap: break-word;
         }
 
         .wisdom-output.active {
@@ -181,11 +184,12 @@
 
         /* Bubbles decoration */
         .bubble {
-            position: absolute;
+            position: fixed;
             bottom: -100px;
             background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             animation: rise 10s infinite ease-in;
+            pointer-events: none;
         }
 
         @keyframes rise {
@@ -207,6 +211,43 @@
         .bubble:nth-child(3) { left: 50%; width: 30px; height: 30px; animation-delay: 4s; }
         .bubble:nth-child(4) { left: 70%; width: 50px; height: 50px; animation-delay: 1s; }
         .bubble:nth-child(5) { left: 85%; width: 45px; height: 45px; animation-delay: 3s; }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .ticker {
+                font-size: 28px;
+                left: 20px;
+                top: 20px;
+            }
+
+            .sky {
+                right: 20px;
+                top: 15px;
+            }
+
+            .sky a {
+                font-size: 16px;
+                padding: 8px 15px;
+            }
+
+            .whale-container {
+                margin-top: 80px;
+            }
+
+            .whale-container img {
+                max-width: 250px;
+            }
+
+            .wisdom-output {
+                font-size: 18px;
+                padding: 20px;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 12px 30px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -219,17 +260,17 @@
     <!-- Ticker -->
     <div class="ticker">$whale16z</div>
 
-    <!-- Whale -->
-    <div class="whale-container">
-        <img src="static/w16z.jpg" alt="Whale">
-    </div>
-
     <!-- Bubbles -->
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
     <div class="bubble"></div>
+
+    <!-- Whale -->
+    <div class="whale-container">
+        <img src="static/w16z.jpg" alt="Whale">
+    </div>
 
     <!-- Main content -->
     <div class="content">
