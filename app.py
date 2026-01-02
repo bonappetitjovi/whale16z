@@ -18,7 +18,7 @@ def random_joke():
         prompt = f"Answer like a cool wise old whale : \"{user_input}\""
 
         completion = client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama-3.3-70b-versatile",
             messages=[{"role": "user", "content": prompt}],
             temperature=2,
             max_tokens=300,
@@ -34,4 +34,5 @@ def random_joke():
         return jsonify({"error": "An unexpected error occurred"}), 500
 
 if __name__ == '__main__':
+
     app.run(debug=True)
